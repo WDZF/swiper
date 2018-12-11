@@ -43,6 +43,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user.common.middlerware.AuthMiddleware',
+    'user.common.middlerware.ErrorCodeMiddleware',
 ]
 
 ROOT_URLCONF = 'swiper.urls'
@@ -114,3 +116,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = [
+    os.path.join(BASE_DIR, 'images')
+]

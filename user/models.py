@@ -3,7 +3,19 @@ import datetime
 from django.db import models
 
 
-class User(models.Model):
+class BaseModel(models.Model):
+    class Meta:
+        abstract = True
+
+    def to_dict(self,ignore=()): # 这里的ignore使用元组
+        att_dict = {}
+        for field in self._meta.fields: # 获取Model对象
+            if field not in ignore:
+                att_dict[field.attname] = getattr(self, field.attname)
+        return att_dict
+
+
+class User(BaseModel):
     SEX = (
         ('男性', '男性'),
         ('女性', '女性'),
@@ -25,20 +37,20 @@ class User(models.Model):
         birth_time = datetime.date(self.birth_year, self.birth_month, self.birth_day)
         return (today - birth_time) // 365
 
-    def to_dict(self):
-        return {
-            'phonenum':self.phonenum,
-            'nickname':self.nickname,
-            'sex':self.sex,
-            'birth_year':self.birth_year,
-            'birth_month':self.birth_month,
-            'birth_day':self.birth_day,
-            'avatar':self.avatar,
-            'location':self.location
-        }
+    # def to_dict(self):
+    #     return {
+    #         'phonenum':self.phonenum,
+    #         'nickname':self.nickname,
+    #         'sex':self.sex,
+    #         'birth_year':self.birth_year,
+    #         'birth_month':self.birth_month,
+    #         'birth_day':self.birth_day,
+    #         'avatar':self.avatar,
+    #         'location':self.location
+    #     }
 
 
-class Profile(models.Model):
+class Profile(BaseModel):
     SEX = (
         ('男性', '男性'),
         ('女性', '女性'),
