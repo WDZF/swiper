@@ -6,9 +6,9 @@ from user.models import BaseModel
 class Swiped(BaseModel):
     '''滑动记录表'''
     like_type = (
-        ("喜欢", "喜欢"),
-        ("不喜欢", "不喜欢"),
-        ("超级喜欢", "超级喜欢"),
+        ("左滑", "喜欢"),
+        ("右滑", "不喜欢"),
+        ("上滑", "超级喜欢"),
     )
     uid = models.IntegerField(null=False)
     sid = models.IntegerField(null=False)
