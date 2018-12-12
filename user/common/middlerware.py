@@ -31,3 +31,4 @@ class ErrorCodeMiddleware(MiddlewareMixin):
         if isinstance(execpt, ErrorCodeException):
             print("*"*19)
             render_json(None, execpt.code)
+
