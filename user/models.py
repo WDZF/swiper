@@ -37,18 +37,6 @@ class User(BaseModel):
         birth_time = datetime.date(self.birth_year, self.birth_month, self.birth_day)
         return (today - birth_time) // 365
 
-    # def to_dict(self):
-    #     return {
-    #         'phonenum':self.phonenum,
-    #         'nickname':self.nickname,
-    #         'sex':self.sex,
-    #         'birth_year':self.birth_year,
-    #         'birth_month':self.birth_month,
-    #         'birth_day':self.birth_day,
-    #         'avatar':self.avatar,
-    #         'location':self.location
-    #     }
-
 
 class Profile(BaseModel):
     SEX = (
